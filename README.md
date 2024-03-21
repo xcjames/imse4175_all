@@ -28,24 +28,26 @@ Install requirements: `pip install -r requirements.txt `
 Run `git clone https://github.com/ultralytics/yolov5.git` outside /imse4175_all. In /imse4175_all/yolov5, copy flir.yaml, flir_thermal.yaml, cctv.yaml to ./yolov5/data. <br>
 Run the following command for model training:<br>
 `
-python train.py --data flir.yaml --weights yolov5s.pt --img 640 --epochs 150 --cfg yolov5s.yaml        
-python train.py --data flir_thermal.yaml --weights yolov5s.pt --img 640 --epochs 150 --cfg yolov5s.yaml       
-python train.py --data cctv.yaml --weights yolov5s.pt --img 640 --epochs 300 --cfg yolov5s.yaml    
+python train.py --data flir.yaml --weights yolov5s.pt --img 640 --epochs 150 --cfg yolov5s.yaml;
+python train.py --data flir_thermal.yaml --weights yolov5s.pt --img 640 --epochs 150 --cfg yolov5s.yaml;       
+python train.py --data cctv.yaml --weights yolov5s.pt --img 640 --epochs 300 --cfg yolov5s.yaml
 `
 
 ## 4. yolov8 model training (/yolov8)
 
 Run the following command for model training:<br>
-`python train.py {cloned yolov5 path}/data/flir.yaml 150      
-python train.py {cloned yolov5 path}/data/flir_thermal.yaml 150       
-python train.py {cloned yolov5 path}/data/cctv.yaml 300`
+`
+python train.py {cloned yolov5 path}/data/flir.yaml 150;
+python train.py {cloned yolov5 path}/data/flir_thermal.yaml 150;
+python train.py {cloned yolov5 path}/data/cctv.yaml 300
+`
 
 ## 5 DeepSORT Object Tracking and Counting
 Find 3 YOLOv5 and 3 YOLOv8 trained models "best.pt" files, copy their path, <br>
 
 Run the following command for object tracking & counting for some ".mp4" videos:
 `
-python main_yolov5.py {video path} {.pt yolo model path}<br>
+python main_yolov5.py {video path} {.pt yolo model path};
 python main_yolov8.py {video path} {.pt yolo model path}
 `
 

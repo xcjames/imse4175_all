@@ -7,7 +7,7 @@ Use `nvidia-smi` to see the NVIDIA GPU you are using. Use `nvcc --version` to se
 
 ### 2.1 CCTV datasets
 Put some bike lanes videos in /imse4175/videos, and make new directories /imse4175/img_data/images, change the pwd in video2img.py to the current /imse4175/ path, and run `python video2img.py`. <br>
-Then, quickly go over all images and select the images that contains some objects, which is suitable for image labelling. Then, go to [https://www.makesense.ai/](https://www.makesense.ai/), do image labelling. <br>
+Then, quickly go over all images and select the images that contains some objects, which is suitable for image labelling. Then, go to [https://www.makesense.ai/](https://www.makesense.ai/), do image labelling locally using  [https://github.com/HumanSignal/labelImg](https://github.com/HumanSignal/labelImg). This is the tutorial for Labelimg:[https://www.youtube.com/watch?v=p0nR2YsCY_U](https://www.youtube.com/watch?v=p0nR2YsCY_U). <br>
 After getting all yolo labels, make new directories: img_data/images and img_data/labels. Put all images and labels inside these two directories directly, respectively.<br>
 Then, create 3 directories: /img_data/train, /img_data/test, /img_data/val, and create empty directories /images, /labels inside each 3 of them. Move images in img_data/images, labels in img_data/labels into img_data/train/images, img_data/train/labels. <br>
 Run`python split_train_val_test.py {path of the /img_data}`, then modify the path in yolov5/cctv.yaml. 

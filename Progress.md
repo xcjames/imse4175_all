@@ -1,12 +1,20 @@
+## Task(7)-2024-04-26
+1. Write Report
+
+//Status:
+1. In progress.
+
+
+
 ## Task(6)-2024-03-25
 1. Add Speed Detection Function
 2. Store the counting result in a csv file, modify the font and color of the text in videos, making them clearer.
 3. Retrain, and Test the Trained YOLOv5m, YOLOv8m Models.
 
 //Status:
-1. In progress.
-2. In progress.
-3. In progress.
+1. Postponed(need the real-world dimension of the bicycle lanes)
+2. Done.
+3. Done.
 
 ## Task(5)-2024-03-02
 1. Labeled 3116 new images from newly recorded long videos in TSEUNG KWAN O, and some online images.

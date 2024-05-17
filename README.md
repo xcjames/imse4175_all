@@ -1,8 +1,12 @@
 # IMSE4175 Code Implementation
 This is the repository for IMSE4175 Object Detection and Tracking System on Bicycle Lanes.
      <br>Run `git clone https://github.com/xcjames/imse4175_all.git`
-## 1. GPU and CUDA version
+## 1. Building Environment
 Use `nvidia-smi` to see the NVIDIA GPU you are using. Use `nvcc --version` to see the CUDA version you have, should be >=V11.1.105
+i.	Open command line, change to the project directory, and execute “git clone https://github.com/ultralytics/yolov5.git”. 
+ii.	Make sure that Python >= 3.8.0 and PyTorch>=1.8.is installed. Use “nvidia-smi” command to see the NVIDIA GPU you are using. Use “nvcc --version” to see the CUDA version you have, which should be >=V11.1.105
+iii.	Install all Python packages required by running “cd yolov5” then “pip install -r requirements.txt”
+
 ## 2. Data Preparing (/imse4175)
 
 ### 2.1 CCTV datasets
@@ -14,14 +18,24 @@ Run`python split_train_val_test.py {path of the /img_data}`, then modify the pat
 
 **Important: The name of directories must be "images" and "labels"**
 ### 2.2 FLIR RGB and FLIR Thermal datasets
-Download FLIR dataset: [https://www.flir.com/oem/adas/adas-dataset-form/](https://www.flir.com/oem/adas/adas-dataset-form/) and download the [FLIR README.txt](https://adas-dataset-v2.flirconservator.com/dataset/README.txt) if more information is needed. Make a new directory /FLIR, get into it and unzip the compressed file. You will see 6 directories:  <br>
+1.	Download FLIR dataset: [https://www.flir.com/oem/adas/adas-dataset-form/](https://www.flir.com/oem/adas/adas-dataset-form/) and download the [FLIR README.txt](https://adas-dataset-v2.flirconservator.com/dataset/README.txt) if more information is needed. Make a new directory /FLIR, get into it and unzip the compressed file.<br>
+2.	There are 6 directories under “/FLIR”:
   • /images_rgb_train  
   • /images_rgb_val  
   • /images_thermal_train  
   • /images_thermal_val  
   • /video_rgb_test  
-  • /video_thermal_test.  <br> 
-inside each directory, create 2 sub-directories:/images, /labels. Put all images in /images, and modify the variable **paths** and **output_path** in json2yolo.py. Then, run `python json2yolo.py`, then modify the path in yolov5/flir.yaml, yolov5/flir_thermal.yaml. <br>
+  • /video_thermal_test.  <br>
+inside each directory, create 2 sub-directories:/images, /labels. Put all images in /images, and modify the variable **paths** and **output_path** in json2yolo.py. Then, run `python json2yolo.py`, then modify the path in yolov5/flir.yaml, yolov5/flir_thermal.yaml. <be>
+	
+3.	Modify “yolov5/models/yolov5s.yaml”, change “nc” to 8, representing 8 categories, then create “yolov5/data/flir.yaml”, and write the information in the following format:
+path: /root/autodl-tmp/FLIR/  # dataset root dir
+train: images_rgb_train  
+val: images_rgb_val 
+test: video_rgb_test 
+nc: 8 
+names: ['person', 'car', 'dog','bicycle', 'e-bike', 'other vehicles', ‘scooter’, ‘stroller’]
+
 
 ## 3. yolov5 model training (/yolov5)
 Install requirements: `pip install -r requirements.txt `
@@ -34,17 +48,18 @@ python train.py --data cctv.yaml --weights yolov5s.pt --img 640 --epochs 300 --c
 ```
 
 ## 4. yolov8 model training (/yolov8)
-
+i.	Change directory to “/yolov5”, run the command “python train.py --data flir.yaml --weights yolov5s.pt --img 640 –epochs 150”
 Run the following command for model training:<br>
 ```
 python train.py {cloned yolov5 path}/data/flir.yaml 150;
 python train.py {cloned yolov5 path}/data/flir_thermal.yaml 150;
 python train.py {cloned yolov5 path}/data/cctv.yaml 300
 ```
+ii.	The trained models and results will be stored under “/yolov5/runs/train”
 
-## 5 DeepSORT Object Tracking and Counting
-Find 3 YOLOv5 and 3 YOLOv8 trained models "best.pt" files, copy their path, <br>
-
+## 5 Generate Object Detection and Tracking videos
+Find YOLOv5 and YOLOv8 trained models "best.pt" files, <br>
+copy their path to main_yolov5.py or main_yolov8.py.<br>
 Run the following command for object tracking & counting for some ".mp4" videos:
 ```
 python main_yolov5.py {video path} {.pt yolo model path};

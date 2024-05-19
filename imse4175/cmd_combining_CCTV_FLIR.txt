@@ -1,7 +1,0 @@
-cd /root/autodl-tmp/summary_all_add_120_scooter_stroller_470_3min_delete_23min_small
-cp ./train/images/*.jpg /root/autodl-tmp/FLIR_and_CCTV/images_rgb_train/images
-cp ./train/labels/*.txt /root/autodl-tmp/FLIR_and_CCTV/images_rgb_train/labels
-cp ./val/images/*.jpg /root/autodl-tmp/FLIR_and_CCTV/images_rgb_val/images
-cp ./val/labels/*.txt /root/autodl-tmp/FLIR_and_CCTV/images_rgb_val/labels
-cp ./test/images/*.jpg /root/autodl-tmp/FLIR_and_CCTV/video_rgb_test/images
-cp ./test/labels/*.txt /root/autodl-tmp/FLIR_and_CCTV/video_rgb_test/labels

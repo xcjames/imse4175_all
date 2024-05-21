@@ -38,7 +38,7 @@ names: ['person', 'car', 'dog','bicycle', 'e-bike', 'other vehicles', ‘scooter
 
 
 ## 3. yolov5 model training (/yolov5)
-Install requirements: `pip install -r requirements.txt `
+You don't need to Install requirements here, since I have put all the dependencies you need at the beginning "Building Environment".
 Run `git clone https://github.com/ultralytics/yolov5.git` outside /imse4175_all. In /imse4175_all/yolov5, copy flir.yaml, flir_thermal.yaml, cctv.yaml to ./yolov5/data. <br>
 Run the following command for model training:<br>
 ```
